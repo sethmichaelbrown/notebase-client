@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-
-
+import React, { Component } from 'react'
 import './App.css'
+import { connect } from 'react-redux'
 
 
 import TextEditor from './components/textEditor/TextEditor'
@@ -11,22 +10,35 @@ import NavBar from './components/NavBar'
 
 class App extends Component {
 
-
   render() {
     return (
       <div className="App">
         <NavBar />
         <div className="row">
-          <div className="col-md-6">
-            <TextEditor />
-          </div>
-          <div className="col-md-6">
-            <CodeEditor />
-          </div>
+          {this.props.displayTextEditor ?
+            <div className="col-md-6">
+              <TextEditor />
+            </div> : ''}
+          {this.props.displayCodeEditor ?
+            <div className="col-md-6">
+              <CodeEditor />
+            </div> : ''}
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    tester: state.tester
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeTester: () => dispatch({ type: 'toFalse' })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
