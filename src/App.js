@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import ReactQuill from 'react-quill'
-import { Container } from 'react-bootstrap'
 
 
-import 'react-quill/dist/quill.snow.css'
 import './App.css'
 
 
 import TextEditor from './TextEditor/TextEditor'
+import CodeEditor from './CodeEditor/CodeEditor'
+
 
 class App extends Component {
 
@@ -19,6 +18,9 @@ class App extends Component {
         <div className="row">
           <div className="col-md-6">
             <TextEditor />
+          </div>
+          <div className="col-md-6">
+            <CodeEditor />
           </div>
         </div>
       </div>

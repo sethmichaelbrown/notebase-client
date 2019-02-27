@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import ReactQuill from 'react-quill'
+
+import 'react-quill/dist/quill.snow.css'
 
 
 class TextEditor extends Component {
@@ -10,12 +12,14 @@ class TextEditor extends Component {
   handleChange(value) {
     this.setState({ text: value })
   }
-  
+
   render() {
     return (
-      <ReactQuill
-        value={this.state.text}
-        onChange={this.handleChange} />
+      <div className="TextEditor">
+        <ReactQuill
+          value={this.state.text}
+          onChange={this.handleChange} />
+      </div>
     )
   }
 }
