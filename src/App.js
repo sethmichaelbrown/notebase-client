@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import './App.css'
 
 
-import TextEditor from './TextEditor/TextEditor'
-import CodeEditor from './CodeEditor/CodeEditor'
+import TextEditor from './components/TextEditor/TextEditor'
+import CodeEditor from './components/CodeEditor/CodeEditor'
 
 
 class App extends Component {
