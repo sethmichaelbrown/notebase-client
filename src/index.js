@@ -11,6 +11,12 @@ import * as monaco from 'monaco-editor';
 import Amplify from "aws-amplify";
 import config from "./config";
 
+// Redux
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './store/Reducer'
+const store = createStore(reducer)
+
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
@@ -33,11 +39,11 @@ Amplify.configure({
       },
     ]
   }
-});
+})
 
 
 ReactDOM.render(
-  <App />, document.getElementById('root')
+  <Provider store={store}><App /></Provider>, document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
