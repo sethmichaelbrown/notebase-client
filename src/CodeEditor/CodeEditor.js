@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import MonacoEditor from 'react-monaco-editor';
 
+
+
 class CodeEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      code: '// type your code...',
-    }
+ 
+  state = {
+    code: '// start typing here...'
   }
+
   editorDidMount(editor, monaco) {
     console.log('editorDidMount', editor);
     editor.focus();

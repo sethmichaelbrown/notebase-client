@@ -9,10 +9,8 @@ class TextEditor extends Component {
     text: ''
   }
 
-  handleChange(value) {
-    this.setState({ text: value })
-  }
-
+  handleChange = (value) => this.setState({ text: value })
+  
   render() {
     return (
       <div className="TextEditor">
