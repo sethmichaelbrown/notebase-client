@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import './App.css'
 
 
-import TextEditor from './components/TextEditor/TextEditor'
-import CodeEditor from './components/CodeEditor/CodeEditor'
+import TextEditor from './components/textEditor/TextEditor'
+import CodeEditor from './components/codeEditor/CodeEditor'
+import NavBar from './components/NavBar'
 
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello from App.js</h1>
+        <NavBar />
         <div className="row">
           <div className="col-md-6">
             <TextEditor />
