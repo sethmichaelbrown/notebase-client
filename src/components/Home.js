@@ -13,17 +13,22 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
+      {console.log('Home')}
         <h1>Hello from Home.js</h1>
 
-        {this.props.displayTextEditor ?
-          <div className="col-md-6">
-            <TextEditor />
-          </div> : ''}
+        <div className="row">
 
-        {this.props.displayCodeEditor ?
-          <div className="col-md-6">
-            <CodeEditor />
-          </div> : ''}
+          {this.props.displayTextEditor ?
+            <div className="col-md-6">
+              <TextEditor />
+            </div> : ''}
+
+          {this.props.displayCodeEditor ?
+            <div className="col-md-6">
+              <CodeEditor />
+            </div> : ''}
+        
+        </div>
       </div>
     );
   }

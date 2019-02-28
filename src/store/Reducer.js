@@ -1,8 +1,10 @@
 const initialState = {
-  displayCodeEditor: false,
-  displayTextEditor: false,
+  displayCodeEditor: true,
+  displayTextEditor: true,
   displayLogin: false,
   displaySignUp: false,
+  isAuthenticated: false,
+  userInformation: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -15,6 +17,11 @@ const reducer = (state = initialState, action) => {
 
   if (action.type === 'homeClick') {
     newState.displayLogin = false
+    return newState
+  }
+
+  if (action.type === 'authenticated') {
+    newState.isAuthenticated = true
     return newState
   }
 

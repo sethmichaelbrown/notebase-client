@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import './App.css'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
-import TextEditor from './components/textEditor/TextEditor'
-import CodeEditor from './components/codeEditor/CodeEditor'
+// import TextEditor from './components/textEditor/TextEditor'
+// import CodeEditor from './components/codeEditor/CodeEditor'
 import NavBar from './components/NavBar'
+import Home from './components/Home'
 import Login from './components/login/Login'
+import NotFound from './components/NotFound'
 
 
 class App extends Component {
@@ -15,17 +18,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-     
-        
         <NavBar />
         
-        <div className="row">
+        <Switch>
+          <Route exact strict path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route component={NotFound} />
+        </Switch>
 
-
-
-        </div>
       </div>
-    );
+
+    )
   }
 }
 
@@ -35,6 +38,7 @@ const mapStateToProps = (state) => {
     displayTextEditor: state.displayTextEditor,
     displayLogin: state.displayLogin,
     displaySignUp: state.displaySignUp,
+    isAuthenticated: state.isAuthenticated
   }
 }
 
@@ -44,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

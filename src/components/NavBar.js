@@ -7,12 +7,14 @@ import '../App.css'
 
 import Login from './login/Login'
 import Home from './Home'
+import NotFound from './NotFound'
 
 
 class NavBar extends Component {
   render() {
     return (
       <div className="Nav">
+      {console.log('NavBar')}
 
         <Navbar bg="dark" variant="dark">
           <LinkContainer to='/'>
@@ -24,18 +26,19 @@ class NavBar extends Component {
             <Nav.Link href="#pricing">My Account</Nav.Link>
           </Nav>
           <Form inline>
-            <Button className='mr-1' variant="outline-light">Sign Up</Button>
-            {this.props.displayLogin ? '' :
+            {this.props.isAuthenticated ?
+              ''
+              :
+              <React.Fragment>
+                <Button className='mr-1' variant="outline-light">Sign Up</Button>
+               { this.props.displayLogin ? '' :
               <LinkContainer to='/login'>
-                <Button onClick={this.props.loginClick} variant="outline-light">Login</Button>
-              </LinkContainer>}
+                  <Button onClick={this.props.loginClick} variant="outline-light">Login</Button>
+                </LinkContainer>}
+              </React.Fragment>}
           </Form>
         </Navbar>
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
       </div>
     )
   }
@@ -45,6 +48,7 @@ const mapStateToProps = (state) => {
   return {
     displayLogin: state.displayLogin,
     displaySignUp: state.displaySignUp,
+    isAuthenticated: state.isAuthenticated
   }
 }
 
