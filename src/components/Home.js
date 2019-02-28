@@ -14,7 +14,7 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <div className="row">
+        <div className="row container">
           <div className="editor-div">
             {this.props.displayTextEditor ?
               <div className="col-md-6 editor-div-item">
