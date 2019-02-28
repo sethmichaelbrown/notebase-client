@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
+import { Route } from 'react-router-dom'
 import '../App.css'
+
+import Login from './login/Login'
 
 
 class NavBar extends Component {
@@ -11,7 +14,9 @@ class NavBar extends Component {
       <div className="Nav">
         {console.log(this.props)}
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">noteBase</Navbar.Brand>
+          <LinkContainer to='/'>
+            <Navbar.Brand>noteBase</Navbar.Brand>
+          </LinkContainer>
           <Nav className="mr-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
@@ -25,6 +30,8 @@ class NavBar extends Component {
               </LinkContainer>}
           </Form>
         </Navbar>
+
+        <Route exact path="/login" component={Login} />
       </div>
     )
   }

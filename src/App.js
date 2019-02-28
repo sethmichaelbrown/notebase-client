@@ -31,10 +31,6 @@ class App extends Component {
               <CodeEditor />
             </div> : ''}
 
-          {this.props.displayLogin ?
-            <div className="col-md-12">
-              <Login />
-            </div> : ''}
         </div>
       </div>
     );
