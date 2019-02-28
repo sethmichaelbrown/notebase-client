@@ -15,6 +15,10 @@ const reducer = (state = initialState, action) => {
     return newState
   }
 
+  if (action.type === 'loginClick') {
+    console.log('Logout Clicked')
+  }
+
   if (action.type === 'homeClick') {
     newState.displayLogin = false
     return newState

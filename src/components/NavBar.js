@@ -14,7 +14,7 @@ class NavBar extends Component {
   render() {
     return (
       <div className="Nav">
-      {console.log('NavBar')}
+        {console.log('NavBar')}
 
         <Navbar bg="dark" variant="dark">
           <LinkContainer to='/'>
@@ -27,14 +27,17 @@ class NavBar extends Component {
           </Nav>
           <Form inline>
             {this.props.isAuthenticated ?
-              ''
+              <Button onClick={this.props.logoutClick} variant="outline-light">Logout</Button>
               :
               <React.Fragment>
-                <Button className='mr-1' variant="outline-light">Sign Up</Button>
-               { this.props.displayLogin ? '' :
-              <LinkContainer to='/login'>
-                  <Button onClick={this.props.loginClick} variant="outline-light">Login</Button>
-                </LinkContainer>}
+                <div className="loginSignUpBtns">
+                  <LinkContainer to='/signup'>
+                    <Button className='mr-1' variant="outline-light">Sign Up</Button>
+                  </LinkContainer>
+                  <LinkContainer to='/login'>
+                    <Button variant="outline-light">Login</Button>
+                  </LinkContainer>
+                </div>
               </React.Fragment>}
           </Form>
         </Navbar>
@@ -55,6 +58,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loginClick: () => dispatch({ type: 'loginClick' }),
+    logoutClick: () => dispatch({ type: 'logoutClick' }),
     homeClick: () => dispatch({ type: 'homeClick' })
 
   }

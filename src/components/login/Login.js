@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Auth } from "aws-amplify"
 import { Button, FormGroup, FormControl, FormLabel, Alert } from "react-bootstrap"
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Home from '../Home'
 
@@ -50,13 +50,13 @@ class Login extends Component {
   render() {
 
     if (this.props.isAuthenticated) {
-      return <Redirect to='/' render={ () => <Home/>}/>
+      return <Redirect to='/' render={() => <Home />} />
     }
 
 
     return (
       <div className="Login">
-      {console.log('Login')}
+        {console.log('Login')}
         <div className="login container">
           <div className="row">
             {this.state.displayLoginWarning ?
@@ -90,6 +90,9 @@ class Login extends Component {
                 <Button className='mr-1' variant='outline-danger'>Cancel</Button>
                 <Button variant='outline-dark' disabled={!this.validateForm()} type="submit">Login</Button>
               </form>
+              <div className="sign">
+                <span>New to noteBase? <Link to='/signup'>Create an account </Link>for free!</span>
+              </div>
             </div>
           </div>
 
