@@ -1,43 +1,37 @@
 import React, { Component } from 'react'
-import MonacoEditor from 'react-monaco-editor';
+// import MonacoEditor from 'react-monaco-editor';
+import { Controlled as CodeMirror } from 'react-codemirror2'
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
 
 
 
 class CodeEditor extends Component {
- 
-  state = {
-    code: '// start typing here...'
-  }
 
-  editorDidMount(editor, monaco) {
-    // console.log('editorDidMount', editor);
-    editor.focus();
-  }
-  onChange(newValue, e) {
-    console.log('onChange', newValue, e);
+  state = {
+    options: {
+      mode: 'xml',
+      theme: 'material',
+      lineNumbers: true
+    },
+    value: ''
   }
 
   render() {
-    const code = this.state.code;
-    const options = {
-      selectOnLineNumbers: true
-    };
     return (
-      <div className="CodeEditor">
-        <MonacoEditor
-          width="800"
-          height="600"
-          language="javascript"
-          theme="vs-dark"
-          value={code}
-          options={options}
-          onChange={this.onChange}
-          editorDidMount={this.editorDidMount} />
-
-      </div>
+      <CodeMirror
+        value={this.state.value}
+        options={this.state.options}
+        onBeforeChange={(editor, data, value) => {
+          this.setState({ value });
+        }}
+        onChange={(editor, data, value) => {
+        }}/>
 
     )
+
   }
+
 }
 
 export default CodeEditor

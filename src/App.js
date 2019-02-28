@@ -1,44 +1,75 @@
 import React, { Component } from 'react'
 import './App.css'
+import { Auth } from 'aws-amplify'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
-import TextEditor from './components/textEditor/TextEditor'
-import CodeEditor from './components/codeEditor/CodeEditor'
+// import TextEditor from './components/textEditor/TextEditor'
+// import CodeEditor from './components/codeEditor/CodeEditor'
 import NavBar from './components/NavBar'
+import Home from './components/Home'
+import Login from './components/login/Login'
+import NotFound from './components/NotFound'
+import SignUp from './components/login/SignUp'
 
 
 class App extends Component {
 
+  state={
+    userHasAuthenticated: false,
+    isAuthenticating: true
+  }
+
+  async componentDidMount() {
+    try {
+      await Auth.currentSession()
+      console.log('Hello')
+      this.userHasAuthenticated(true)
+    }
+    catch (e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
+    }
+
+    this.setState({ isAuthenticating: false });
+  }
+
+
   render() {
     return (
+      !this.state.isAuthenticating &&
       <div className="App">
         <NavBar />
-        <div className="row">
-          {this.props.displayTextEditor ?
-            <div className="col-md-6">
-              <TextEditor />
-            </div> : ''}
-          {this.props.displayCodeEditor ?
-            <div className="col-md-6">
-              <CodeEditor />
-            </div> : ''}
-        </div>
+
+        <Switch>
+          <Route exact strict path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route component={NotFound} />
+        </Switch>
+
       </div>
-    );
+
+    )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    tester: state.tester
+    displayCodeEditor: state.displayCodeEditor,
+    displayTextEditor: state.displayTextEditor,
+    displayLogin: state.displayLogin,
+    displaySignUp: state.displaySignUp,
+    isAuthenticated: state.isAuthenticated
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeTester: () => dispatch({ type: 'toFalse' })
+    loginClick: () => dispatch({ type: 'loginClick' })
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

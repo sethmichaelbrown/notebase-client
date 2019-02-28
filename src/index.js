@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// Router
+import { BrowserRouter as Router } from "react-router-dom";
+
 // CodeEditor
 import * as monaco from 'monaco-editor';
 
@@ -43,7 +46,7 @@ Amplify.configure({
 
 
 ReactDOM.render(
-  <Provider store={store}><App /></Provider>, document.getElementById('root')
+  <Router><Provider store={store}><App /></Provider></Router>, document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
