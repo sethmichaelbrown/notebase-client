@@ -12,6 +12,7 @@ import Home from './components/Home'
 import Login from './components/login/Login'
 import NotFound from './components/NotFound'
 import SignUp from './components/login/SignUp'
+import Editor from './components/editor/Editor'
 
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
           <Route exact strict path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/editor" component={Editor} />
           <Route component={NotFound} />
         </Switch>
 

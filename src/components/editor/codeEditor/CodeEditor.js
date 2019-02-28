@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import brace from 'brace';
 import AceEditor from 'react-ace';
+
+import brace from 'brace';
 
 import 'brace/mode/java'
 import 'brace/mode/javascript'
@@ -44,6 +45,13 @@ class CodeEditor extends Component {
     value: ''
   }
 
+  onChange = (event) => {
+    const newState = { ...this.state }
+    newState.value = event
+    this.setState({ value: newState.value })
+    
+  }
+
   render() {
 
     let themeKey = 1
@@ -53,10 +61,10 @@ class CodeEditor extends Component {
       <div className="CodeEditor">
         <div className="row">
 
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <nav class="navbar navbar-expand-lg navbar-light">
 
             <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.currentTheme.split('_').join(' ')}
               </button>
 
@@ -66,7 +74,7 @@ class CodeEditor extends Component {
             </div>
 
             <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.currentLanguage}
               </button>
 
@@ -76,7 +84,7 @@ class CodeEditor extends Component {
             </div>
 
             <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.currentFontSize}
               </button>
 
@@ -96,7 +104,7 @@ class CodeEditor extends Component {
             theme={this.state.currentTheme}
             name="blah2"
             height='100vh'
-            width='45vw'
+            width='49vw'
             wrapEnabled={true}
             onLoad={this.onLoad}
             onChange={this.onChange}

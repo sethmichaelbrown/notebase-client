@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import '../App.css'
 
-
-import CodeEditor from './codeEditor/CodeEditor'
-import TextEditor from './textEditor/TextEditor'
 
 
 
@@ -14,20 +12,11 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <div className="row container">
-          <div className="editor-div">
-            {this.props.displayTextEditor ?
-              <div className="col-md-6 editor-div-item">
-                <TextEditor />
-              </div> : ''}
-            {this.props.displayCodeEditor ?
-              <div className="col-md-6 editor-div-item">
-                <CodeEditor />
-              </div> : ''}
-          </div>
-        </div>
+        <h2>Log in to see your bases</h2>
+        <h2>or get started by creating a <Link to='/editor'>new base</Link></h2>
+
       </div>
-    );
+    )
   }
 }
 
