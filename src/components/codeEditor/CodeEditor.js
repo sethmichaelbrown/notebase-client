@@ -25,8 +25,8 @@ class CodeEditor extends Component {
     return (
       <div className="CodeEditor">
         <MonacoEditor
-          width="800"
-          height="600"
+          width='50vw'
+          height='75vh'
           language="javascript"
           theme="vs-dark"
           value={code}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import '../App.css'
 
 
 import CodeEditor from './codeEditor/CodeEditor'
@@ -13,21 +14,17 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-      {console.log('Home')}
-        <h1>Hello from Home.js</h1>
-
         <div className="row">
-
-          {this.props.displayTextEditor ?
-            <div className="col-md-6">
-              <TextEditor />
-            </div> : ''}
-
-          {this.props.displayCodeEditor ?
-            <div className="col-md-6">
-              <CodeEditor />
-            </div> : ''}
-        
+          <div className="editor-div">
+            {this.props.displayTextEditor ?
+              <div className="col-md-6 editor-div-item">
+                <TextEditor />
+              </div> : ''}
+            {this.props.displayCodeEditor ?
+              <div className="col-md-6 editor-div-item">
+                <CodeEditor />
+              </div> : ''}
+          </div>
         </div>
       </div>
     );

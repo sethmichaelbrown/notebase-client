@@ -1,0 +1,10 @@
+.editor-div {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  height: 100%
+}
+
+.editor-div-item {
+  width: 40%
+}

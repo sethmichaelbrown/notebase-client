@@ -56,7 +56,6 @@ class Login extends Component {
 
     return (
       <div className="Login">
-        {console.log('Login')}
         <div className="login container">
           <div className="row">
             {this.state.displayLoginWarning ?

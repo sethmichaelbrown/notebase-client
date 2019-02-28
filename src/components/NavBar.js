@@ -14,7 +14,6 @@ class NavBar extends Component {
   render() {
     return (
       <div className="Nav">
-        {console.log('NavBar')}
 
         <Navbar bg="dark" variant="dark">
           <LinkContainer to='/'>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import { Auth } from 'aws-amplify'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -15,12 +16,33 @@ import SignUp from './components/login/SignUp'
 
 class App extends Component {
 
+  state={
+    userHasAuthenticated: false,
+    isAuthenticating: true
+  }
+
+  async componentDidMount() {
+    try {
+      await Auth.currentSession()
+      console.log('Hello')
+      this.userHasAuthenticated(true)
+    }
+    catch (e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
+    }
+
+    this.setState({ isAuthenticating: false });
+  }
+
 
   render() {
     return (
+      !this.state.isAuthenticating &&
       <div className="App">
         <NavBar />
-        
+
         <Switch>
           <Route exact strict path="/" component={Home} />
           <Route exact path="/login" component={Login} />
