@@ -37,8 +37,11 @@ class CodeEditor extends Component {
   state = {
     languages: ['javascript', 'java', 'python', 'xml', 'ruby', 'sass', 'markdown', 'mysql', 'json', 'html', 'handlebars', 'golang', 'csharp', 'coffee', 'css'].sort(),
     themes: ['monokai', 'github', 'tomorrow', 'kuroir', 'twilight', 'xcode', 'textmate', 'solarized_dark', 'solarized_light', 'terminal'].sort(),
+    fontSize: ['8', '10', '12', '14', '16'],
     currentLanguage: 'javascript',
-    currentTheme: 'monokai',
+    currentTheme: 'solarized_dark',
+    currentFontSize: '14',
+    value: ''
   }
 
   render() {
@@ -50,10 +53,9 @@ class CodeEditor extends Component {
       <div className="CodeEditor">
         <div className="row">
 
-          <nav class="navbar navbar-expand-* navbar-light bg-light">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <div class="dropdown">
-              {console.log(this.state)}
               <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.currentTheme.split('_').join(' ')}
               </button>
@@ -73,26 +75,39 @@ class CodeEditor extends Component {
               </div>
             </div>
 
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {this.state.currentFontSize}
+              </button>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {this.state.fontSize.map(size => <a key={langKey++} onClick={() => this.setState({ currentFontSize: size })} class="dropdown-item">{size}</a>)}
+              </div>
+            </div>
+
 
           </nav>
 
         </div >
 
         <div className="row">
-        {console.log(this.state)}
           <AceEditor
             mode={this.state.currentLanguage}
             theme={this.state.currentTheme}
             name="blah2"
+            height='100vh'
+            width='45vw'
+            wrapEnabled={true}
             onLoad={this.onLoad}
             onChange={this.onChange}
-            fontSize={14}
+            fontSize={parseInt(this.state.currentFontSize)}
             showPrintMargin={true}
             showGutter={true}
             highlightActiveLine={true}
-            value={`function onLoad(editor) {console.log("i've loaded")} `}
+            defaultValue='// start coding here...'
+            value={this.state.value}
             setOptions={{
-              enableBasicAutocompletion: false,
+              enableBasicAutocompletion: true,
               enableLiveAutocompletion: false,
               enableSnippets: false,
               showLineNumbers: true,

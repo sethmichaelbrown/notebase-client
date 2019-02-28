@@ -3,7 +3,17 @@
   height: 100%;
 }
 
-.editor-div-item{
+.editor-div-item {
   width: 50vw;
   height: 100vh;
+}
+
+.ql-editor,
+.ace_editor {
+  height: 80vh !important;
+}
+
+#editor {
+  height: 300px;
+  width: 100%;
 }
