@@ -6,10 +6,15 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  const newState = {...state}
+  const newState = { ...state }
 
-  if(action.type === 'loginClick'){
+  if (action.type === 'loginClick') {
     newState.displayLogin = true
+    return newState
+  }
+
+  if (action.type === 'homeClick') {
+    newState.displayLogin = false
     return newState
   }
 

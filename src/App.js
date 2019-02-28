@@ -15,21 +15,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {console.log(this.props)}
+     
         
         <NavBar />
         
         <div className="row">
 
-          {this.props.displayTextEditor ?
-            <div className="col-md-6">
-              <TextEditor />
-            </div> : ''}
 
-          {this.props.displayCodeEditor ?
-            <div className="col-md-6">
-              <CodeEditor />
-            </div> : ''}
 
         </div>
       </div>

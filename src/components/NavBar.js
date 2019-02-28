@@ -2,20 +2,21 @@ import React, { Component } from 'react'
 import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import '../App.css'
 
 import Login from './login/Login'
+import Home from './Home'
 
 
 class NavBar extends Component {
   render() {
     return (
       <div className="Nav">
-        {console.log(this.props)}
+
         <Navbar bg="dark" variant="dark">
           <LinkContainer to='/'>
-            <Navbar.Brand>noteBase</Navbar.Brand>
+            <Navbar.Brand onClick={this.props.homeClick}>noteBase</Navbar.Brand>
           </LinkContainer>
           <Nav className="mr-auto">
             <Nav.Link href="#home">Home</Nav.Link>
@@ -31,7 +32,10 @@ class NavBar extends Component {
           </Form>
         </Navbar>
 
-        <Route exact path="/login" component={Login} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
       </div>
     )
   }
@@ -46,7 +50,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginClick: () => dispatch({ type: 'loginClick' })
+    loginClick: () => dispatch({ type: 'loginClick' }),
+    homeClick: () => dispatch({ type: 'homeClick' })
+
   }
 }
 
