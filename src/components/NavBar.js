@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { LinkContainer } from 'react-router-bootstrap'
 import '../App.css'
 
 
@@ -18,7 +19,10 @@ class NavBar extends Component {
           </Nav>
           <Form inline>
             <Button className='mr-1' variant="outline-light">Sign Up</Button>
-            <Button onClick={this.props.loginClick} variant="outline-light">Login</Button>
+            {this.props.displayLogin ? '' :
+              <LinkContainer to='/login'>
+                <Button onClick={this.props.loginClick} variant="outline-light">Login</Button>
+              </LinkContainer>}
           </Form>
         </Navbar>
       </div>
