@@ -1,34 +1,60 @@
 import React, { Component } from 'react'
 import { Auth } from "aws-amplify"
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Button, FormGroup, FormControl, FormLabel, Alert } from "react-bootstrap"
+import { connect } from 'react-redux'
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
-      password: ""
-    };
+      password: "",
+      displayLoginWarning: false,
+      error: ''
+    }
   }
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value
     });
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleLoginError = (error) => {
+    const newState = { ...this.state }
+    newState.error = error.message
+    newState.displayLoginWarning = true
+    this.setState({ displayLoginWarning: newState.displayLoginWarning })
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+
+    try {
+      await Auth.signIn(this.state.email, this.state.password);
+      alert("Logged in");
+    } catch (error) {
+      this.handleLoginError(error)
+    }
   }
 
   render() {
     return (
       <div className="Login container">
+        <div className="row">
+          {this.state.displayLoginWarning ?
+            <Alert variant='danger'>
+              {this.state.error}
+              Reset your password<Alert.Link href="#"> here </Alert.Link> 
+              if you continue having trouble logging in.
+            </Alert>
+            : ''}
+        </div>
         <div className="row">
           <div className="col-md-8 col-sm-10">
             <form onSubmit={this.handleSubmit}>
@@ -54,7 +80,25 @@ export default class Login extends Component {
             </form>
           </div>
         </div>
+
       </div>
     );
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     // displayLoginWarning: state.displayLoginWarning,
+
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     // handleLoginError: () => dispatch({ type: 'handleLoginError' }),
+
+
+//   }
+// }
+
+export default Login
