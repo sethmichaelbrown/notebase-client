@@ -7,9 +7,6 @@ import * as serviceWorker from './serviceWorker';
 // Router
 import { BrowserRouter as Router } from "react-router-dom";
 
-// CodeEditor
-import * as monaco from 'monaco-editor';
-
 // AWS
 import Amplify from "aws-amplify";
 import config from "./config";
