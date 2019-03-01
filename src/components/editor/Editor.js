@@ -33,14 +33,13 @@ const mapStateToProps = (state) => {
   return {
     displayCodeEditor: state.displayCodeEditor,
     displayTextEditor: state.displayTextEditor,
-    displayLogin: state.displayLogin,
-    displaySignUp: state.displaySignUp,
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginClick: () => dispatch({ type: 'loginClick' })
+    // loginClick: () => dispatch({ type: 'loginClick' })
   }
 }
 

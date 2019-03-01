@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 // AWS
 import Amplify from "aws-amplify";
-import config from "./config";
+import config from "./config"
 
 // Redux
 import { Provider } from 'react-redux'

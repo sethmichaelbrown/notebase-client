@@ -42,7 +42,7 @@ class CodeEditor extends Component {
     currentLanguage: 'javascript',
     currentTheme: 'solarized_dark',
     currentFontSize: '14',
-    value: ''
+    value: "console.log('Hello World')"
   }
 
   onChange = (event) => {
@@ -61,35 +61,35 @@ class CodeEditor extends Component {
       <div className="CodeEditor">
         <div className="row">
 
-          <nav class="navbar navbar-expand-lg navbar-light">
+          <nav className="navbar navbar-expand-lg navbar-light">
 
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div className="dropdown">
+              <button className="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.currentTheme.split('_').join(' ')}
               </button>
 
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {this.state.themes.map(theme => <a key={themeKey++} onClick={() => this.setState({ currentTheme: theme })} class="dropdown-item">{theme.split('_').join(' ')}</a>)}
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {this.state.themes.map(theme => <a key={themeKey++} onClick={() => this.setState({ currentTheme: theme })} className="dropdown-item">{theme.split('_').join(' ')}</a>)}
               </div>
             </div>
 
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div className="dropdown">
+              <button className="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.currentLanguage}
               </button>
 
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {this.state.languages.map(language => <a key={langKey++} onClick={() => this.setState({ currentLanguage: language })} class="dropdown-item">{language}</a>)}
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {this.state.languages.map(language => <a key={langKey++} onClick={() => this.setState({ currentLanguage: language })} className="dropdown-item">{language}</a>)}
               </div>
             </div>
 
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div className="dropdown">
+              <button className="btn btn-outline-secondary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {this.state.currentFontSize}
               </button>
 
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {this.state.fontSize.map(size => <a key={langKey++} onClick={() => this.setState({ currentFontSize: size })} class="dropdown-item">{size}</a>)}
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {this.state.fontSize.map(size => <a key={langKey++} onClick={() => this.setState({ currentFontSize: size })} className="dropdown-item">{size}</a>)}
               </div>
             </div>
 

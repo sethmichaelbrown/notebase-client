@@ -8,7 +8,10 @@
   height: 100vh;
 }
 
-.ql-editor,
+.ql-editor{
+  height: 81vh !important;
+}
+
 .ace_editor {
   height: 80vh !important;
 }
@@ -16,4 +19,12 @@
 #editor {
   height: 300px;
   width: 100%;
+}
+
+.Button__button___1FrBC{
+  color: black !important;
+  border: solid !important;
+  border-color: black !important;
+  border-width: 1px !important;
+  background-color: white !important;
 }
