@@ -1,45 +1,46 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Form, Button } from 'react-bootstrap'
+// import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Route, Switch } from 'react-router-dom'
+// import { LinkContainer } from 'react-router-bootstrap'
+// import { Route, Switch } from 'react-router-dom'
+import { Auth } from "aws-amplify"
+// import { withAuthenticator } from 'aws-amplify-react'
+
+import './styles/navbar.css'
 import '../App.css'
 
-import Login from './login/Login'
-import Home from './Home'
-import NotFound from './NotFound'
+import logo from './svgs/noteBaseLogo.svg'
 
 
 class NavBar extends Component {
+
+  handleLogout = async () => {
+    try {
+      await Auth.signOut()
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+
   render() {
     return (
       <div className="Nav">
+        <nav class="navbar navbar-expand-* navbar-light">
+          <a class="navbar-brand" href="#">
+            <img src={logo} class="d-inline-block align-top" alt=""></img>
+          </a>
+          <button className="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-        <Navbar bg="dark" variant="dark">
-          <LinkContainer to='/'>
-            <Navbar.Brand onClick={this.props.homeClick}>noteBase</Navbar.Brand>
-          </LinkContainer>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">My Account</Nav.Link>
-          </Nav>
-          <Form inline>
-            {this.props.isAuthenticated ?
-              <Button onClick={this.props.logoutClick} variant="outline-light">Logout</Button>
-              :
-              <React.Fragment>
-                <div className="loginSignUpBtns">
-                  <LinkContainer to='/signup'>
-                    <Button className='mr-1' variant="outline-light">Sign Up</Button>
-                  </LinkContainer>
-                  <LinkContainer to='/login'>
-                    <Button variant="outline-light">Login</Button>
-                  </LinkContainer>
-                </div>
-              </React.Fragment>}
-          </Form>
-        </Navbar>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+        
+            </ul>
+
+          </div>
+        </nav>
 
       </div>
     )
@@ -48,16 +49,12 @@ class NavBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    displayLogin: state.displayLogin,
-    displaySignUp: state.displaySignUp,
     isAuthenticated: state.isAuthenticated
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginClick: () => dispatch({ type: 'loginClick' }),
-    logoutClick: () => dispatch({ type: 'logoutClick' }),
     homeClick: () => dispatch({ type: 'homeClick' })
 
   }

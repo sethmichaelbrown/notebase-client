@@ -1,33 +1,25 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import '../App.css'
+import uuid from 'uuid'
 
-
-import CodeEditor from './codeEditor/CodeEditor'
-import TextEditor from './textEditor/TextEditor'
 
 
 
 class Home extends Component {
 
+  newId = () => {
+    console.log(uuid().split('-')[0])
+  }
 
   render() {
     return (
       <div className="Home">
-        <div className="row">
-          <div className="editor-div">
-            {this.props.displayTextEditor ?
-              <div className="col-md-6 editor-div-item">
-                <TextEditor />
-              </div> : ''}
-            {this.props.displayCodeEditor ?
-              <div className="col-md-6 editor-div-item">
-                <CodeEditor />
-              </div> : ''}
-          </div>
-        </div>
+        
+
       </div>
-    );
+    )
   }
 }
 
@@ -35,8 +27,7 @@ const mapStateToProps = (state) => {
   return {
     displayCodeEditor: state.displayCodeEditor,
     displayTextEditor: state.displayTextEditor,
-    displayLogin: state.displayLogin,
-    displaySignUp: state.displaySignUp,
+
   }
 }
 
