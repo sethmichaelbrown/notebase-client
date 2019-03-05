@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Form, Button } from 'react-bootstrap'
+// import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Route, Switch } from 'react-router-dom'
+// import { LinkContainer } from 'react-router-bootstrap'
+// import { Route, Switch } from 'react-router-dom'
 import { Auth } from "aws-amplify"
-import { withAuthenticator } from 'aws-amplify-react'
+// import { withAuthenticator } from 'aws-amplify-react'
+
+import './styles/navbar.css'
 import '../App.css'
 
-
-import Home from './Home'
-import NotFound from './NotFound'
+import logo from './svgs/noteBaseLogo.svg'
 
 
 class NavBar extends Component {
@@ -26,20 +26,21 @@ class NavBar extends Component {
   render() {
     return (
       <div className="Nav">
+        <nav class="navbar navbar-expand-* navbar-light">
+          <a class="navbar-brand" href="#">
+            <img src={logo} class="d-inline-block align-top" alt=""></img>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <Navbar bg="dark" variant="dark">
-          <LinkContainer to='/'>
-            <Navbar.Brand onClick={this.props.homeClick}>noteBase</Navbar.Brand>
-          </LinkContainer>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">My Account</Nav.Link>
-          </Nav>
-          <Form inline>
-            <Button onClick={this.handleLogout} variant="outline-light">Logout</Button>
-          </Form>
-        </Navbar>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+        
+            </ul>
+
+          </div>
+        </nav>
 
       </div>
     )
